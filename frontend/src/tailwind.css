@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+/* Indian Flag Theme tokens for Tailwind v4 */
+@theme {
+  --color-saffron: #FF9933;
+  --color-saffron-dark: #FF6B00;
+  --color-navy: #003087;
+  --color-navy-dark: #000080;
+  --color-green-india: #138808;
+  --color-green-dark: #006400;
+  --color-chakra: #0047AB;
+}
