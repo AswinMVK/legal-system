@@ -12,7 +12,8 @@ import urllib.error
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000"])
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
+CORS(app, origins=[frontend_url, "http://localhost:3000"])
 
 DB_CONFIG = {
     "host":     os.getenv("DB_HOST",     "localhost"),
