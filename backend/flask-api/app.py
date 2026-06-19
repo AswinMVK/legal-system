@@ -493,8 +493,8 @@ def stats_overview():
 
 # ─── AI Chat (Ollama / qwen2.5) ─────────────────────────────
 
-OLLAMA_URL   = "http://localhost:11434/api/chat"
-OLLAMA_MODEL = "qwen2.5:latest"
+OLLAMA_URL   = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5:latest")
 TODAY_STR    = "16 April 2026"
 
 
