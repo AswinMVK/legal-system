@@ -280,12 +280,76 @@ def analyze_case_text():
     })
 
 
-# ─── AI Summary Generation (Ollama) ─────────────────────────
+# ─── AI Query Helper (Gemini / Ollama) ──────────────────────
+
+def query_llm(messages):
+    api_key = os.getenv("GEMINI_API_KEY")
+    if api_key:
+        system_prompt = None
+        contents = []
+        for msg in messages:
+            role = msg.get("role")
+            if role == "system":
+                system_prompt = msg.get("content")
+                continue
+            gemini_role = "model" if role == "assistant" else "user"
+            contents.append({
+                "role": gemini_role,
+                "parts": [{"text": msg.get("content")}]
+            })
+        
+        payload = {
+            "contents": contents,
+            "generationConfig": {
+                "temperature": 0.2,
+                "maxOutputTokens": 800
+            }
+        }
+        if system_prompt:
+            payload["systemInstruction"] = {
+                "parts": [{"text": system_prompt}]
+            }
+            
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+        
+        req_obj = urllib_req.Request(
+            url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
+        with urllib_req.urlopen(req_obj, timeout=90) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+        
+        try:
+            return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+        except (KeyError, IndexError):
+            raise ValueError(f"Gemini API returned an error or blocked response: {result}")
+    else:
+        payload = json.dumps({
+            "model":    OLLAMA_MODEL,
+            "messages": messages,
+            "stream":   False,
+            "options":  {"temperature": 0.2, "num_predict": 500},
+        }).encode("utf-8")
+        
+        req_obj = urllib_req.Request(
+            OLLAMA_URL,
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib_req.urlopen(req_obj, timeout=90) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+        return result.get("message", {}).get("content", "").strip()
+
+
+# ─── AI Summary Generation ──────────────────────────────────
 
 @app.route("/api/nlp/generate-summary", methods=["POST"])
 def generate_summary():
     """
-    Uses Ollama LLM to generate a concise case summary from FIR text.
+    Generates a concise case summary from FIR text.
     """
     data = request.get_json(silent=True) or {}
     fir_text = (data.get("fir_text") or "").strip()
@@ -303,29 +367,14 @@ def generate_summary():
         "CASE SUMMARY:"
     )
 
-    payload = json.dumps({
-        "model":    OLLAMA_MODEL,
-        "messages": [
+    try:
+        summary = query_llm([
             {"role": "system", "content": "You are a legal document summarizer for the Indian judiciary. Be concise and factual."},
             {"role": "user", "content": prompt},
-        ],
-        "stream": False,
-        "options": {"temperature": 0.2, "num_predict": 300},
-    }).encode("utf-8")
-
-    try:
-        req_obj = urllib_req.Request(
-            OLLAMA_URL,
-            data=payload,
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        with urllib_req.urlopen(req_obj, timeout=90) as resp:
-            result = json.loads(resp.read().decode("utf-8"))
-        summary = result.get("message", {}).get("content", "").strip()
+        ])
         return jsonify({"summary": summary})
     except urllib.error.URLError as e:
-        return jsonify({"error": f"Ollama unreachable: {e.reason}"}), 503
+        return jsonify({"error": f"AI service unreachable: {e.reason}"}), 503
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -377,32 +426,13 @@ def recommend_sections():
         "Return ONLY the JSON array, no extra text. If no sections match, return []."
     )
 
-    payload = json.dumps({
-        "model":    OLLAMA_MODEL,
-        "messages": [
+    try:
+        raw_reply = query_llm([
             {"role": "system", "content": "You are an Indian criminal law expert. Respond only with valid JSON."},
             {"role": "user", "content": prompt},
-        ],
-        "stream": False,
-        "options": {"temperature": 0.1, "num_predict": 500},
-    }).encode("utf-8")
-
-    try:
-        req_obj = urllib_req.Request(
-            OLLAMA_URL,
-            data=payload,
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        with urllib_req.urlopen(req_obj, timeout=90) as resp:
-            result = json.loads(resp.read().decode("utf-8"))
-        raw_reply = result.get("message", {}).get("content", "").strip()
-
-        # Parse the LLM JSON response
-        # Extract JSON array from the response (handle markdown code blocks)
+        ])
         json_str = raw_reply
         if "```" in json_str:
-            # Extract content between code blocks
             parts = json_str.split("```")
             for part in parts:
                 stripped = part.strip()
@@ -417,7 +447,6 @@ def recommend_sections():
         except json.JSONDecodeError:
             recommendations = []
 
-        # Match recommendations to actual DB sections and enrich
         matched = []
         for rec in recommendations:
             rec_section = str(rec.get("section", "")).strip()
@@ -441,7 +470,7 @@ def recommend_sections():
         })
 
     except urllib.error.URLError as e:
-        return jsonify({"error": f"Ollama unreachable: {e.reason}"}), 503
+        return jsonify({"error": f"AI service unreachable: {e.reason}"}), 503
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -755,23 +784,8 @@ def chat_with_llm():
     ollama_messages += recent_history
     ollama_messages.append({"role": "user", "content": message})
 
-    payload = json.dumps({
-        "model":    OLLAMA_MODEL,
-        "messages": ollama_messages,
-        "stream":   False,
-        "options":  {"temperature": 0.3, "num_predict": 512},
-    }).encode("utf-8")
-
     try:
-        req_obj = urllib_req.Request(
-            OLLAMA_URL,
-            data=payload,
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        with urllib_req.urlopen(req_obj, timeout=90) as resp:
-            result = json.loads(resp.read().decode("utf-8"))
-        reply = result.get("message", {}).get("content", "")
+        reply = query_llm(ollama_messages)
         return jsonify({"reply": reply, "role": "assistant"})
     except urllib.error.URLError as e:
         return jsonify({"error": f"Ollama unreachable: {e.reason}"}), 503

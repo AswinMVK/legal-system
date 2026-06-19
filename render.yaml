@@ -16,6 +16,8 @@ services:
         sync: false
       - key: FRONTEND_URL
         sync: false
+      - key: GEMINI_API_KEY
+        sync: false
     rootDir: backend/flask-api
 
   # 2. Express API Backend
