@@ -310,7 +310,7 @@ def query_llm(messages):
                 "parts": [{"text": system_prompt}]
             }
             
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
         
         req_obj = urllib_req.Request(
             url,
