@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Card } from "primereact/card";
 import { Tag } from "primereact/tag";
+import { Timeline } from "primereact/timeline";
 import gsap from "gsap";
 
 export default function About() {
@@ -18,13 +19,58 @@ export default function About() {
         y: 30,
         opacity: 0,
         duration: 0.5,
-        stagger: 0.12,
-        delay: 0.2,
+        stagger: 0.1,
+        delay: 0.15,
         ease: "power2.out",
       });
     }, pageRef);
     return () => ctx.revert();
   }, []);
+
+  const lifecycleEvents = [
+    {
+      status: "1. Case Creation & Digitization",
+      icon: "pi pi-file-plus",
+      color: "#FF9933",
+      bg: "rgba(255,153,51,0.15)",
+      description: "Standardized case intake is recorded by Court Writers. Details like FIR descriptions, accused/victim demographics, and vulnerability markers are digitized instantly."
+    },
+    {
+      status: "2. AI Section Selection",
+      icon: "pi pi-list",
+      color: "#000F89",
+      bg: "rgba(0,15,137,0.15)",
+      description: "Unstructured case narratives are parsed by Google Gemini AI. The model matches factual details to the most relevant IPC/BNS legal sections, suggesting them to the clerk."
+    },
+    {
+      status: "3. AI Case Summarization",
+      icon: "pi pi-align-left",
+      color: "#138808",
+      bg: "rgba(19,136,8,0.15)",
+      description: "Gemini AI distills verbose legal text into concise 3-5 sentence summaries. This provides judges with an instant factual overview of the offense and key parties."
+    },
+    {
+      status: "4. Dynamic Prioritization",
+      icon: "pi pi-sort-amount-down",
+      color: "#FF9933",
+      bg: "rgba(255,153,51,0.15)",
+      description: "An advanced algorithm computes a real-time urgency score. It flags overstaying undertrials, incorporates case age, and raises the priority for vulnerable litigants."
+    },
+    {
+      status: "5. Smart Scheduling",
+      icon: "pi pi-calendar-times",
+      color: "#000F89",
+      bg: "rgba(0,15,137,0.15)",
+      description: "Prioritized cases are dynamically mapped to open time slots, taking into account specific judge specializations and court caseload, optimizing courtroom usage."
+    },
+    {
+      status: "6. Unified Communication",
+      icon: "pi pi-comments",
+      color: "#138808",
+      bg: "rgba(19,136,8,0.15)",
+      description: "Facilitates transparency with real-time notifications, chat assistant lookups, and secure updates between Judges, Clerks, Advocates, and Victims."
+    }
+  ];
 
   const features = [
     {
@@ -56,6 +102,34 @@ export default function About() {
       bg: "rgba(107, 114, 128, 0.1)"
     }
   ];
+
+  const customizedMarker = (item) => {
+    return (
+      <span className="flex w-2rem h-2rem align-items-center justify-content-center border-circle z-1" style={{
+        backgroundColor: item.bg,
+        width: "38px",
+        height: "38px",
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        border: `2px solid ${item.color}`
+      }}>
+        <i className={item.icon} style={{ color: item.color, fontSize: "0.95rem" }} />
+      </span>
+    );
+  };
+
+  const customizedContent = (item) => {
+    return (
+      <Card title={item.status} style={{ marginBottom: "1rem", boxShadow: "0 2px 6px rgba(0,0,0,0.04)" }}>
+        <p style={{ margin: 0, lineHeight: "1.5", fontSize: "0.95rem", color: "#475569" }}>
+          {item.description}
+        </p>
+      </Card>
+    );
+  };
 
   return (
     <div ref={pageRef} className="about-container" style={{ padding: "1.5rem", maxWidth: "1200px", margin: "0 auto" }}>
@@ -120,10 +194,26 @@ export default function About() {
           </Card>
         </div>
 
+        {/* End-to-End Court Case Lifecycle Timeline */}
+        <div className="col-12 about-section-card" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+          <Card title="End-to-End Court Case Lifecycle" style={{ borderLeft: "4px solid #138808" }}>
+            <p style={{ marginBottom: "2rem", color: "var(--text-secondary-color)", fontSize: "1rem" }}>
+              Legira manages the entire lifecycle of a court case seamlessly. Below is the workflow from case filing to scheduling and stakeholder communication:
+            </p>
+            <Timeline 
+              value={lifecycleEvents} 
+              align="alternate" 
+              className="customized-timeline"
+              marker={customizedMarker} 
+              content={customizedContent} 
+            />
+          </Card>
+        </div>
+
         {/* Feature Cards Grid */}
         <div className="col-12" style={{ marginTop: "1rem" }}>
           <h3 className="about-section-card" style={{ marginBottom: "1.5rem", borderBottom: "2px solid #e2e8f0", paddingBottom: "0.5rem", color: "#334155" }}>
-            Core Capabilities & Functionality
+            Core Capabilities & System Highlights
           </h3>
           <div className="grid">
             {features.map((feat, index) => (
