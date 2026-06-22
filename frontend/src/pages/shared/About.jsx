@@ -145,7 +145,7 @@ export default function About() {
   };
 
   return (
-    <div ref={pageRef} className="about-container" style={{ padding: "1.5rem", maxWidth: "1200px", margin: "0 auto" }}>
+    <div ref={pageRef} className="about-container" style={{ padding: "3rem 2.5rem", maxWidth: "1200px", margin: "0 auto" }}>
       {/* Header Banner */}
       <div className="about-header banner-saffron" style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "2rem", position: "relative" }}>
         <Button 
@@ -167,7 +167,7 @@ export default function About() {
       <div className="grid">
         {/* Project Vision Card */}
         <div className="col-12 md:col-8 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="Project Vision & Motivation" style={{ height: "100%", borderLeft: "4px solid #FF9933" }}>
+          <Card title="Project Vision & Motivation" style={{ height: "100%", borderLeft: "4px solid #FF9933", padding: "1.5rem" }}>
             <p style={{ lineHeight: "1.6", color: "var(--text-color)", fontSize: "1.05rem" }}>
               The Indian judicial system faces a massive case backlog, leaving many undertrials in detention for periods exceeding their potential sentences. <strong>Legira</strong> (derived from <em>Legal Integrity & Rapid Assistance</em>) was developed to directly address this issue.
             </p>
@@ -177,9 +177,40 @@ export default function About() {
           </Card>
         </div>
 
+        {/* Project Architect / Developer Card */}
+        <div className="col-12 md:col-4 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card style={{ height: "100%", borderLeft: "4px solid #138808", padding: "1.5rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "1.2rem" }}>
+              <img 
+                src="/aswin.png" 
+                alt="Aswin MVK" 
+                style={{ 
+                  width: "120px", 
+                  height: "120px", 
+                  borderRadius: "50%", 
+                  objectFit: "cover", 
+                  border: "4px solid #000F89",
+                  boxShadow: "0 6px 12px rgba(0,0,0,0.15)"
+                }} 
+              />
+              <div>
+                <h2 style={{ margin: "0 0 0.3rem 0", fontSize: "1.3rem", fontWeight: "800", color: "var(--text-color)" }}>
+                  Developed by Aswin MVK
+                </h2>
+                <h4 style={{ margin: "0 0 0.8rem 0", fontSize: "0.95rem", color: "#FF9933", fontWeight: "600", textTransform: "uppercase", letterSpacing: "1px" }}>
+                  Lead Project Architect
+                </h4>
+                <p style={{ lineHeight: "1.5", color: "var(--text-secondary-color)", fontSize: "0.88rem", textAlign: "justify", margin: 0 }}>
+                  <strong>Cause:</strong> Resolving the massive judicial case backlog, preventing statutory undertrial overstay violations (under Section 436A of CrPC/BNSS), and bringing secure digital transparency via blockchain.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
         {/* System Tech Stack Card */}
         <div className="col-12 md:col-4 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="Technology Stack" style={{ height: "100%", borderLeft: "4px solid #000F89" }}>
+          <Card title="Technology Stack" style={{ height: "100%", borderLeft: "4px solid #000F89", padding: "1.5rem" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
               <div>
                 <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Frontend</span>
@@ -215,43 +246,39 @@ export default function About() {
         </div>
 
         {/* Detailed Tech Specifications (AI & Blockchain) */}
-        <div className="col-12 md:col-6 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="AI Specifications & Prompt Engineering" style={{ height: "100%", borderLeft: "4px solid #138808" }}>
-            <p style={{ lineHeight: "1.5", fontSize: "0.95rem" }}>
+        <div className="col-12 md:col-4 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="AI Specifications" style={{ height: "100%", borderLeft: "4px solid #138808", padding: "1.5rem" }}>
+            <p style={{ lineHeight: "1.5", fontSize: "0.9rem", margin: "0 0 0.8rem 0" }}>
               Legira utilizes a hybrid AI layout orchestrating both local and cloud LLMs via a Python Flask framework:
             </p>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.6", fontSize: "0.95rem" }}>
+            <ul style={{ paddingLeft: "1.1rem", lineHeight: "1.5", fontSize: "0.88rem", margin: 0 }}>
               <li>
-                <strong>Cloud Engine (Default)</strong>: Google Gemini API (<code>gemini-2.5-flash</code>) handles high-concurrency requests, offering rapid reasoning and low-latency token generation.
+                <strong>Cloud Engine</strong>: Google Gemini API (<code>gemini-2.5-flash</code>) handles high-concurrency requests, offering rapid reasoning and low-latency token generation.
               </li>
               <li>
-                <strong>Local Fallback</strong>: Ollama client integration running <code>qwen2.5:latest</code> allows secure offline hosting and air-gapped system runs.
+                <strong>Local Fallback</strong>: Ollama client running <code>qwen2.5:latest</code> allows secure offline hosting and air-gapped system runs.
               </li>
               <li>
-                <strong>Temperature Tuning</strong>: 
-                <ul>
-                  <li><em>Factual Summarization</em>: Configured at <code>temperature=0.2</code> to restrict hallucinations and maintain strictly factual legal wording.</li>
-                  <li><em>IPC Section Recommendation</em>: Configured at <code>temperature=0.1</code> to ensure absolute JSON output compliance.</li>
-                </ul>
+                <strong>Temperature Tuning</strong>: Configured at <code>0.2</code> for factual summaries and <code>0.1</code> for section recommendations to restrict hallucinations.
               </li>
             </ul>
           </Card>
         </div>
 
-        <div className="col-12 md:col-6 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="Cryptographic Blockchain Audit Trail" style={{ height: "100%", borderLeft: "4px solid #000F89" }}>
-            <p style={{ lineHeight: "1.5", fontSize: "0.95rem" }}>
+        <div className="col-12 md:col-4 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="Blockchain Audit Trail" style={{ height: "100%", borderLeft: "4px solid #000F89", padding: "1.5rem" }}>
+            <p style={{ lineHeight: "1.5", fontSize: "0.9rem", margin: "0 0 0.8rem 0" }}>
               To ensure absolute transparency and prevent internal tampering of record updates, Legira writes critical case milestones to a custom blockchain ledger:
             </p>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.6", fontSize: "0.95rem" }}>
+            <ul style={{ paddingLeft: "1.1rem", lineHeight: "1.5", fontSize: "0.88rem", margin: 0 }}>
               <li>
-                <strong>Block Structure</strong>: Every block stores a Block Index, Timestamp, Transactions (details of case registration, judge assignments, hearing outcomes), Previous Block Hash, and Current Cryptographic Hash.
+                <strong>Block Structure</strong>: Every block stores a Block Index, Timestamp, Transactions, Previous Block Hash, and Current Cryptographic Hash.
               </li>
               <li>
                 <strong>Security Hashing</strong>: Case data is transformed into a cryptographic hash (SHA-256), creating a tamper-evident seal.
               </li>
               <li>
-                <strong>Integrity Verification</strong>: A public verification engine iterates through the chain to recalculate hashes. If any block's database record changes, the link breaks and triggers a system alert.
+                <strong>Integrity Verification</strong>: A public verification engine iterates through the chain to recalculate hashes and detect database tampering.
               </li>
             </ul>
           </Card>
@@ -259,19 +286,19 @@ export default function About() {
 
         {/* Database & Section Relations */}
         <div className="col-12 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="Database Architecture & Overstay Alerts" style={{ borderLeft: "4px solid #FF9933" }}>
-            <p style={{ lineHeight: "1.6", fontSize: "0.98rem" }}>
+          <Card title="Database Architecture & Overstay Alerts" style={{ borderLeft: "4px solid #FF9933", padding: "2rem" }}>
+            <p style={{ lineHeight: "1.6", fontSize: "0.98rem", marginBottom: "1rem" }}>
               Legira's core database relations map the case lifecycle directly to legal statutes to protect civil liberties:
             </p>
-            <div className="grid" style={{ marginTop: "1rem" }}>
-              <div className="col-12 md:col-6">
+            <div className="grid" style={{ marginTop: "0.5rem" }}>
+              <div className="col-12 md:col-6" style={{ padding: "0.5rem 1.5rem" }}>
                 <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Relation Schema Mapping</h5>
                 <p style={{ lineHeight: "1.5", fontSize: "0.92rem", color: "#475569" }}>
                   The <code>cases</code> table represents registered disputes. Through the junction table <code>case_sections</code>, cases are linked to multiple records in the <code>legal_sections</code> catalog. 
                   This catalog holds predefined details for each IPC/BNS section, including <code>max_sentence_years</code>, <code>max_sentence_days</code>, and <code>bailability</code>.
                 </p>
               </div>
-              <div className="col-12 md:col-6">
+              <div className="col-12 md:col-6" style={{ padding: "0.5rem 1.5rem" }}>
                 <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Overstay & Section 436A CrPC/BNSS Logic</h5>
                 <p style={{ lineHeight: "1.5", fontSize: "0.92rem", color: "#475569" }}>
                   The maximum statutory sentence of the associated sections determines the <code>expected_sentence_days</code> inside the <code>detention_details</code> registry. 
@@ -285,7 +312,7 @@ export default function About() {
 
         {/* End-to-End Court Case Lifecycle Timeline */}
         <div className="col-12 about-section-card" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-          <Card title="End-to-End Court Case Lifecycle" style={{ borderLeft: "4px solid #138808" }}>
+          <Card title="End-to-End Court Case Lifecycle" style={{ borderLeft: "4px solid #138808", padding: "2rem" }}>
             <p style={{ marginBottom: "2rem", color: "var(--text-secondary-color)", fontSize: "1rem" }}>
               Legira manages the entire lifecycle of a court case seamlessly. Below is the workflow from case filing to scheduling and stakeholder communication:
             </p>
@@ -307,7 +334,7 @@ export default function About() {
           <div className="grid">
             {features.map((feat, index) => (
               <div key={index} className="col-12 md:col-6 about-section-card" style={{ marginBottom: "1.5rem" }}>
-                <div className="p-card p-component" style={{ padding: "1.5rem", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0", display: "flex", gap: "1rem", height: "100%" }}>
+                <div className="p-card p-component" style={{ padding: "2rem", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.06)", border: "1px solid #e2e8f0", display: "flex", gap: "1.5rem", height: "100%" }}>
                   <div style={{
                     width: "48px",
                     height: "48px",

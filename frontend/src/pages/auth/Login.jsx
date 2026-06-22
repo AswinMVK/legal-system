@@ -205,6 +205,38 @@ export default function Login() {
           ))}
         </div>
 
+        <div className="lp-developer-card lp-feature-item" style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "1.2rem",
+          backgroundColor: "rgba(255, 255, 255, 0.08)",
+          padding: "1.25rem",
+          borderRadius: "8px",
+          marginTop: "1.5rem",
+          borderLeft: "4px solid #FF9933",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
+        }}>
+          <img 
+            src="/aswin.png" 
+            alt="Aswin MVK" 
+            style={{ 
+              width: "56px", 
+              height: "56px", 
+              borderRadius: "50%", 
+              objectFit: "cover", 
+              border: "2px solid #FFFFFF",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
+              flexShrink: 0
+            }} 
+          />
+          <div>
+            <div style={{ color: "#FFFFFF", fontWeight: "bold", fontSize: "0.95rem" }}>Developed by Aswin MVK</div>
+            <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", lineHeight: "1.4", marginTop: "4px" }}>
+              <strong>Cause:</strong> Resolving judicial case backlog, preventing statutory undertrial overstay violations (Section 436A CrPC/BNSS), and bringing secure digital transparency via blockchain.
+            </div>
+          </div>
+        </div>
+
         <div className="lp-left-footer">© 2026 Ministry of Law & Justice</div>
       </div>
 
