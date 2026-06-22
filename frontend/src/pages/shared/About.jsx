@@ -145,7 +145,7 @@ export default function About() {
   };
 
   return (
-    <div ref={pageRef} className="about-container" style={{ padding: "3rem 2.5rem", maxWidth: "1200px", margin: "0 auto" }}>
+    <div ref={pageRef} className="about-container" style={{ padding: "3rem 2.5rem 5.5rem", maxWidth: "1200px", margin: "0 auto" }}>
       {/* Header Banner */}
       <div className="about-header banner-saffron" style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "2rem", position: "relative" }}>
         <Button 
@@ -358,11 +358,23 @@ export default function About() {
         </div>
       </div>
 
-      {/* Marquee Portfolio Link */}
-      <div style={{ width: "100%", overflow: "hidden", marginTop: "3rem", borderTop: "1px solid #e2e8f0", paddingTop: "1rem" }}>
-        <marquee behavior="scroll" direction="left" style={{ color: "#FF9933", fontWeight: "bold", fontSize: "1.1rem" }}>
+      {/* Fixed Bottom Marquee */}
+      <div style={{ 
+        position: "fixed", 
+        bottom: 0, 
+        left: 0, 
+        width: "100%", 
+        overflow: "hidden", 
+        zIndex: 9999, 
+        backgroundColor: "rgba(0, 15, 137, 0.95)", 
+        padding: "8px 0",
+        borderTop: "2px solid #FF9933",
+        boxShadow: "0 -4px 12px rgba(0,0,0,0.15)",
+        backdropFilter: "blur(4px)"
+      }}>
+        <marquee behavior="scroll" direction="left" style={{ color: "#FF9933", fontWeight: "bold", fontSize: "1.05rem", margin: 0 }}>
           Developed by &nbsp;
-          <a href="https://aswin-portfoli.netlify.app/" target="_blank" rel="noopener noreferrer" style={{ color: "#000F89", textDecoration: "underline", fontWeight: "800" }}>
+          <a href="https://aswin-portfoli.netlify.app/" target="_blank" rel="noopener noreferrer" style={{ color: "#FFFFFF", textDecoration: "underline", fontWeight: "800" }}>
             Aswin MVK
           </a> 
           &nbsp; — Click to view my portfolio repository and digital showcases!
