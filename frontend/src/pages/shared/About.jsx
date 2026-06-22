@@ -326,6 +326,72 @@ export default function About() {
           </Card>
         </div>
 
+        {/* User Roles & Benefits Section */}
+        <div className="col-12 about-section-card" style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
+          <Card title="User Roles & Benefits" style={{ borderLeft: "4px solid #000F89", padding: "2rem" }}>
+            <p style={{ marginBottom: "2rem", color: "var(--text-secondary-color)", fontSize: "1rem" }}>
+              Legira connects all key stakeholders of the judicial system, providing tailored features and benefits to optimize court efficiency:
+            </p>
+            <div className="grid">
+              {/* Judges */}
+              <div className="col-12 md:col-6" style={{ marginBottom: "1.5rem" }}>
+                <div style={{ padding: "1.5rem", border: "1px solid #e2e8f0", borderRadius: "8px", height: "100%", backgroundColor: "rgba(255, 107, 0, 0.03)", borderLeft: "4px solid #FF6B00" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.8rem" }}>
+                    <i className="pi pi-star-fill" style={{ color: "#FF6B00", fontSize: "1.2rem" }} />
+                    <h4 style={{ margin: 0, fontWeight: "bold", fontSize: "1.1rem", color: "#FF6B00" }}>Judges & Magistrates</h4>
+                  </div>
+                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.5", fontSize: "0.92rem", color: "#475569", margin: 0 }}>
+                    <li><strong>How they work:</strong> Review case details, manage scheduling priority queues, schedule hearings, and upload final judgments.</li>
+                    <li><strong>Key Benefits:</strong> Automated priority sorting highlights long-detained undertrials (Sec 436A) and vulnerable litigants, reducing case backlogs and case congestion.</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Clerks / Writers */}
+              <div className="col-12 md:col-6" style={{ marginBottom: "1.5rem" }}>
+                <div style={{ padding: "1.5rem", border: "1px solid #e2e8f0", borderRadius: "8px", height: "100%", backgroundColor: "rgba(6, 88, 10, 0.03)", borderLeft: "4px solid #06580A" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.8rem" }}>
+                    <i className="pi pi-pencil" style={{ color: "#06580A", fontSize: "1.2rem" }} />
+                    <h4 style={{ margin: 0, fontWeight: "bold", fontSize: "1.1rem", color: "#06580A" }}>Court Writers & Clerks</h4>
+                  </div>
+                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.5", fontSize: "0.92rem", color: "#475569", margin: 0 }}>
+                    <li><strong>How they work:</strong> Enter new FIR/case filings, transcribe narratives, and manage document attachments.</li>
+                    <li><strong>Key Benefits:</strong> Integrated Google Gemini AI co-pilot automatically suggests relevant legal sections (IPC/BNS) and generates instant 3-sentence case summaries, saving hours of manual parsing.</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Advocates */}
+              <div className="col-12 md:col-6" style={{ marginBottom: "1.5rem" }}>
+                <div style={{ padding: "1.5rem", border: "1px solid #e2e8f0", borderRadius: "8px", height: "100%", backgroundColor: "rgba(0, 15, 137, 0.03)", borderLeft: "4px solid #000F89" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.8rem" }}>
+                    <i className="pi pi-user-edit" style={{ color: "#000F89", fontSize: "1.2rem" }} />
+                    <h4 style={{ margin: 0, fontWeight: "bold", fontSize: "1.1rem", color: "#000F89" }}>Advocates & Legal Representatives</h4>
+                  </div>
+                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.5", fontSize: "0.92rem", color: "#475569", margin: 0 }}>
+                    <li><strong>How they work:</strong> Register victims/litigants, track assigned cases, upload documentation, and check priority cues.</li>
+                    <li><strong>Key Benefits:</strong> Complete visibility into the scheduling timeline and priority scoring. Quick links to victim profiles allow transparent tracking of client status.</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* System Admin */}
+              <div className="col-12 md:col-6" style={{ marginBottom: "1.5rem" }}>
+                <div style={{ padding: "1.5rem", border: "1px solid #e2e8f0", borderRadius: "8px", height: "100%", backgroundColor: "rgba(0, 0, 128, 0.03)", borderLeft: "4px solid #000080" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.8rem" }}>
+                    <i className="pi pi-shield" style={{ color: "#000080", fontSize: "1.2rem" }} />
+                    <h4 style={{ margin: 0, fontWeight: "bold", fontSize: "1.1rem", color: "#000080" }}>System Administrators</h4>
+                  </div>
+                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.5", fontSize: "0.92rem", color: "#475569", margin: 0 }}>
+                    <li><strong>How they work:</strong> Maintain user accounts, manage roles, audit database tables, and verify blockchain ledger integrity.</li>
+                    <li><strong>Key Benefits:</strong> Dedicated blockchain audit portal displays real-time block validation reports, keeping security airtight and tamper-proof.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
         {/* Feature Cards Grid */}
         <div className="col-12" style={{ marginTop: "1rem" }}>
           <h3 className="about-section-card" style={{ marginBottom: "1.5rem", borderBottom: "2px solid #e2e8f0", paddingBottom: "0.5rem", color: "#334155" }}>
