@@ -317,7 +317,7 @@ export default function Login() {
       <div style={{ width: "100%", overflow: "hidden", position: "absolute", bottom: 0, left: 0, zIndex: 100, backgroundColor: "rgba(0,15,137,0.85)", padding: "8px 0" }}>
         <marquee behavior="scroll" direction="left" style={{ color: "#FF9933", fontWeight: "bold", fontSize: "1.05rem" }}>
           Developed by &nbsp;
-          <a href="https://github.com/AswinMVK" target="_blank" rel="noopener noreferrer" style={{ color: "#FFFFFF", textDecoration: "underline", fontWeight: "800" }}>
+          <a href="https://aswin-portfoli.netlify.app/" target="_blank" rel="noopener noreferrer" style={{ color: "#FFFFFF", textDecoration: "underline", fontWeight: "800" }}>
             Aswin MVK
           </a> 
           &nbsp; — Click to view my portfolio repository and digital showcases!
