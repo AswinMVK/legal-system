@@ -137,7 +137,7 @@ export default function Login() {
   };
 
   return (
-    <div className="lp-root">
+    <div className="lp-root" style={{ paddingBottom: "4.5rem" }}>
       <Toast ref={toast} />
 
       {/* ── Left panel ── */}

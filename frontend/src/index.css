@@ -233,7 +233,7 @@ body::before {
 }
 
 .page-content {
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 5rem;
   flex: 1;
 }
 

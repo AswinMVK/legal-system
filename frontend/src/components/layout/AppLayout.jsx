@@ -16,7 +16,7 @@ export default function AppLayout() {
         <div className="sidebar-overlay" onClick={closeSidebar} />
       )}
       <AppSidebar open={sidebarOpen} onClose={closeSidebar} />
-      <div className="app-main" style={{ minHeight: "100vh", paddingBottom: "3.5rem" }}>
+      <div className="app-main" style={{ minHeight: "100vh" }}>
         <AppTopBar onMenuToggle={toggleSidebar} />
         <div className="page-content">
           <Outlet />
