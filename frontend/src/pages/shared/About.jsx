@@ -169,10 +169,10 @@ export default function About() {
         <div className="col-12 md:col-8 about-section-card" style={{ marginBottom: "1.5rem" }}>
           <Card title="Project Vision & Motivation" style={{ height: "100%", borderLeft: "4px solid #FF9933", padding: "1.5rem" }}>
             <p style={{ lineHeight: "1.6", color: "var(--text-color)", fontSize: "1.05rem" }}>
-              The Indian judicial system faces a massive case backlog, leaving many undertrials in detention for periods exceeding their potential sentences. <strong>Legira</strong> (derived from <em>Legal Integrity & Rapid Assistance</em>) was developed to directly address this issue.
+              The Indian judicial system is heavily burdened by a massive backlog of over <strong>4.5 crore pending cases</strong>. This leads to severe operational inefficiencies and human rights crises where thousands of undertrials languish in prisons for periods longer than the maximum sentence of their alleged offenses, directly violating the right to a speedy trial under <strong>Article 21</strong> of the Constitution.
             </p>
             <p style={{ lineHeight: "1.6", color: "var(--text-color)", fontSize: "1.05rem" }}>
-              By integrating intelligent automation with cryptographic security, Legira provides structural support for the <strong>e-Courts Mission Mode Project</strong>. It automatically flags overstays, detects vulnerable individuals (minors, elderly, differently-abled), prioritizes critical hearings, and secures judicial logs to build public trust in digital governance.
+              <strong>Legira</strong> (derived from <em>Legal Integrity & Rapid Assistance</em>) was engineered as a comprehensive digital framework to solve this crisis. By combining intelligent automation with cryptographic logs, the system supports the <strong>e-Courts Mission Mode Project</strong>. It automates statutory overstay detection (under Section 436A of CrPC/BNSS), safeguards case event histories from unauthorized changes, and optimizes daily schedules to ensure courtrooms operate at peak capacity.
             </p>
           </Card>
         </div>
@@ -213,100 +213,190 @@ export default function About() {
           <Card title="Technology Stack" style={{ height: "100%", borderLeft: "4px solid #000F89", padding: "1.5rem" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
               <div>
-                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Frontend</span>
+                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Frontend Architecture</span>
                 <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "4px" }}>
-                  <Tag value="React" severity="info" />
-                  <Tag value="PrimeReact" severity="success" />
-                  <Tag value="GSAP Animations" severity="warning" />
+                  <Tag value="React.js (SPA)" severity="info" />
+                  <Tag value="PrimeReact UI Components" severity="success" />
+                  <Tag value="GSAP Animation Engine" severity="warning" />
                 </div>
               </div>
               <div>
-                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Backends</span>
+                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Service Layer Backends</span>
                 <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "4px" }}>
-                  <Tag value="Node.js / Express" severity="info" />
-                  <Tag value="Python / Flask" severity="success" />
+                  <Tag value="Node.js / Express API" severity="info" />
+                  <Tag value="Python 3.10 / Flask Service" severity="success" />
                 </div>
               </div>
               <div>
-                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Database & Blockchain</span>
+                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Data Ledger & Cryptography</span>
                 <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "4px" }}>
-                  <Tag value="MySQL" severity="danger" />
-                  <Tag value="Custom Ledger" valueTemplate={() => <span style={{ padding: "0.2rem 0.5rem", borderRadius: "4px", fontSize: "0.8rem", backgroundColor: "rgba(0,15,137,0.15)", color: "#000F89", fontWeight: "bold" }}>Custom Ledger</span>} />
+                  <Tag value="MySQL (Relational Schema)" severity="danger" />
+                  <Tag value="SHA-256 Blockchain Ledger" valueTemplate={() => <span style={{ padding: "0.2rem 0.5rem", borderRadius: "4px", fontSize: "0.8rem", backgroundColor: "rgba(0,15,137,0.15)", color: "#000F89", fontWeight: "bold" }}>Custom Ledger</span>} />
                 </div>
               </div>
               <div>
-                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Artificial Intelligence</span>
+                <span style={{ fontWeight: "bold", display: "block", fontSize: "0.9rem", color: "var(--text-secondary-color)" }}>Intelligence Layer</span>
                 <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "4px" }}>
-                  <Tag value="Google Gemini 2.5" severity="warning" />
-                  <Tag value="Ollama Fallback" severity="info" />
+                  <Tag value="Google Gemini 2.5 API" severity="warning" />
+                  <Tag value="Ollama (Local Fallback)" severity="info" />
                 </div>
               </div>
             </div>
           </Card>
         </div>
 
-        {/* Detailed Tech Specifications (AI & Blockchain) */}
+        {/* AI specifications */}
         <div className="col-12 md:col-4 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="AI Specifications" style={{ height: "100%", borderLeft: "4px solid #138808", padding: "1.5rem" }}>
+          <Card title="AI Engine & Prompt Engineering" style={{ height: "100%", borderLeft: "4px solid #138808", padding: "1.5rem" }}>
             <p style={{ lineHeight: "1.5", fontSize: "0.9rem", margin: "0 0 0.8rem 0" }}>
-              Legira utilizes a hybrid AI layout orchestrating both local and cloud LLMs via a Python Flask framework:
+              Legira utilizes a hybrid AI orchestrator that routes requests to either cloud-hosted LLMs or local server nodes:
             </p>
             <ul style={{ paddingLeft: "1.1rem", lineHeight: "1.5", fontSize: "0.88rem", margin: 0 }}>
               <li>
-                <strong>Cloud Engine</strong>: Google Gemini API (<code>gemini-2.5-flash</code>) handles high-concurrency requests, offering rapid reasoning and low-latency token generation.
+                <strong>Cloud LLM Engine</strong>: Google Gemini API (<code>gemini-2.5-flash</code>) manages standard summarizations and legal code recommendations.
               </li>
               <li>
-                <strong>Local Fallback</strong>: Ollama client running <code>qwen2.5:latest</code> allows secure offline hosting and air-gapped system runs.
+                <strong>Local Fallback Nodes</strong>: Ollama client integration running <code>qwen2.5:latest</code> allows secure offline processing and air-gapped system operations.
               </li>
               <li>
-                <strong>Temperature Tuning</strong>: Configured at <code>0.2</code> for factual summaries and <code>0.1</code> for section recommendations to restrict hallucinations.
+                <strong>Context Engineering</strong>: Prompt templates enforce output formatting through structured JSON schemas.
+              </li>
+              <li>
+                <strong>Parameter Optimization</strong>: Run with <code>temperature=0.2</code> for factual summaries and <code>temperature=0.1</code> for IPC/BNS recommendations to restrict hallucinations.
               </li>
             </ul>
           </Card>
         </div>
 
+        {/* Blockchain specifications */}
         <div className="col-12 md:col-4 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="Blockchain Audit Trail" style={{ height: "100%", borderLeft: "4px solid #000F89", padding: "1.5rem" }}>
+          <Card title="Blockchain Ledger Specifications" style={{ height: "100%", borderLeft: "4px solid #000F89", padding: "1.5rem" }}>
             <p style={{ lineHeight: "1.5", fontSize: "0.9rem", margin: "0 0 0.8rem 0" }}>
-              To ensure absolute transparency and prevent internal tampering of record updates, Legira writes critical case milestones to a custom blockchain ledger:
+              To ensure absolute transparency and prevent internal database tampering, Legira records critical case milestones on a custom cryptographically linked ledger:
             </p>
             <ul style={{ paddingLeft: "1.1rem", lineHeight: "1.5", fontSize: "0.88rem", margin: 0 }}>
               <li>
-                <strong>Block Structure</strong>: Every block stores a Block Index, Timestamp, Transactions, Previous Block Hash, and Current Cryptographic Hash.
+                <strong>Block Structure</strong>: Stores Block Index, Timestamp, Transactions (logs of registration, assignments, outcomes), Previous Block Hash, and Current Hash.
               </li>
               <li>
-                <strong>Security Hashing</strong>: Case data is transformed into a cryptographic hash (SHA-256), creating a tamper-evident seal.
+                <strong>Consensus & Proof of Work</strong>: Automatically mines transactions when actions occur. Block generation runs with a target difficulty level of 3 (requiring 3 leading zeros in the SHA-256 hash).
               </li>
               <li>
-                <strong>Integrity Verification</strong>: A public verification engine iterates through the chain to recalculate hashes and detect database tampering.
+                <strong>Integrity Validation</strong>: A public verification engine recalculates SHA-256 hashes sequentially. If any transaction or database record has been altered, the block link breaks, triggering a security alert.
               </li>
             </ul>
+          </Card>
+        </div>
+
+        {/* Mathematical priority scoring model */}
+        <div className="col-12 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="Automated Priority Scoring Model (Mathematical Specification)" style={{ borderLeft: "4px solid #FF9933", padding: "2rem" }}>
+            <p style={{ lineHeight: "1.6", fontSize: "0.98rem", marginBottom: "1.5rem" }}>
+              Legira's scheduling priority is governed by an objective mathematical model designed to balance legal urgency, human rights considerations, and operational constraints. The **Urgency Priority Score (\(S\))** of a case is computed dynamically using a weighted linear combination:
+            </p>
+            
+            <div style={{ 
+              backgroundColor: "var(--surface-b)", 
+              padding: "1.5rem", 
+              borderRadius: "8px", 
+              border: "1px dashed var(--border-color)", 
+              textAlign: "center",
+              marginBottom: "1.5rem"
+            }}>
+              <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#FF6B00", display: "block" }}>
+                \[S = (W_d \cdot D) + (W_a \cdot A) + (W_v \cdot V) + (W_p \cdot P)\]
+              </span>
+            </div>
+
+            <div className="grid">
+              <div className="col-12 md:col-6" style={{ padding: "0.5rem 1.5rem" }}>
+                <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Variable Component Mapping</h5>
+                <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.6", fontSize: "0.92rem", color: "#475569", margin: 0 }}>
+                  <li>
+                    <strong>Detention Overstay Ratio (\(D\))</strong>: Calculated as \(\min\left(1.0, \frac{\text{detention\_days}}{\text{expected\_sentence\_days}}\right)\). Triggers immediate urgency when custody duration approaches statutory limits.
+                  </li>
+                  <li>
+                    <strong>Case Pending Age (\(A\))</strong>: Normalized duration that the case has remained unresolved: \(\min\left(1.0, \frac{\text{days\_pending}}{365 \times 5}\right)\).
+                  </li>
+                  <li>
+                    <strong>Litigant Vulnerability Index (\(V\))</strong>: A score between \(0\) and \(1.0\) computed based on demographic vulnerability markers (elderly, minors, female, or physically challenged litigants).
+                  </li>
+                  <li>
+                    <strong>Adjournment Penalty (\(P\))</strong>: Normalized ratio of case delays: \(\min\left(1.0, \frac{\text{adjournment\_count}}{10}\right)\).
+                  </li>
+                </ul>
+              </div>
+
+              <div className="col-12 md:col-6" style={{ padding: "0.5rem 1.5rem" }}>
+                <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Weight Distributions & Priority Thresholds</h5>
+                <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.6", fontSize: "0.92rem", color: "#475569", margin: 0 }}>
+                  <li>
+                    <strong>Detention Weight (\(W_d = 0.40\))</strong>: The primary factor, ensuring that the prevention of undertrial overstay violations takes utmost precedence.
+                  </li>
+                  <li>
+                    <strong>Age Weight (\(W_a = 0.25\))</strong>: Ensures long-pending cases do not get pushed back indefinitely in the system.
+                  </li>
+                  <li>
+                    <strong>Vulnerability Weight (\(W_v = 0.20\))</strong>: Speeds up scheduling for vulnerable litigants.
+                  </li>
+                  <li>
+                    <strong>Adjournment Weight (\(W_p = 0.15\))</strong>: penalizes frequent delays, ensuring stalled cases receive a higher scheduling priority.
+                  </li>
+                  <li>
+                    <strong>Urgency Classification</strong>:
+                    <ul>
+                      <li>\(S \ge 0.75\) &rarr; <strong>CRITICAL</strong> status (triggers immediate hearing slot).</li>
+                      <li>\(0.50 \le S < 0.75\) &rarr; <strong>HIGH</strong> priority.</li>
+                      <li>\(0.25 \le S < 0.50\) &rarr; <strong>MEDIUM</strong> priority.</li>
+                      <li>\(S < 0.25\) &rarr; <strong>LOW</strong> priority.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </Card>
         </div>
 
         {/* Database & Section Relations */}
-        <div className="col-12 about-section-card" style={{ marginBottom: "1.5rem" }}>
-          <Card title="Database Architecture & Overstay Alerts" style={{ borderLeft: "4px solid #FF9933", padding: "2rem" }}>
-            <p style={{ lineHeight: "1.6", fontSize: "0.98rem", marginBottom: "1rem" }}>
+        <div className="col-12 md:col-6 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="Database Schema & Relational Integrity" style={{ height: "100%", borderLeft: "4px solid #FF9933", padding: "1.5rem" }}>
+            <p style={{ lineHeight: "1.5", fontSize: "0.9rem", margin: "0 0 0.8rem 0" }}>
               Legira's core database relations map the case lifecycle directly to legal statutes to protect civil liberties:
             </p>
-            <div className="grid" style={{ marginTop: "0.5rem" }}>
-              <div className="col-12 md:col-6" style={{ padding: "0.5rem 1.5rem" }}>
-                <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Relation Schema Mapping</h5>
-                <p style={{ lineHeight: "1.5", fontSize: "0.92rem", color: "#475569" }}>
-                  The <code>cases</code> table represents registered disputes. Through the junction table <code>case_sections</code>, cases are linked to multiple records in the <code>legal_sections</code> catalog. 
-                  This catalog holds predefined details for each IPC/BNS section, including <code>max_sentence_years</code>, <code>max_sentence_days</code>, and <code>bailability</code>.
-                </p>
-              </div>
-              <div className="col-12 md:col-6" style={{ padding: "0.5rem 1.5rem" }}>
-                <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Overstay & Section 436A CrPC/BNSS Logic</h5>
-                <p style={{ lineHeight: "1.5", fontSize: "0.92rem", color: "#475569" }}>
-                  The maximum statutory sentence of the associated sections determines the <code>expected_sentence_days</code> inside the <code>detention_details</code> registry. 
-                  By comparing the accused's actual time in custody (<code>detention_days</code>) to this maximum, the system calculates the <code>detention_ratio</code>. 
-                  When this ratio is <code>&gt;= 1.0</code> (or <code>&gt;= 0.5</code> under Section 436A), the <code>overstay_flag</code> triggers, highlighting an immediate human rights concern and bumping the case to <strong>CRITICAL</strong> status in the Priority Queue.
-                </p>
-              </div>
-            </div>
+            <ul style={{ paddingLeft: "1.1rem", lineHeight: "1.5", fontSize: "0.88rem", margin: 0 }}>
+              <li>
+                <strong>Entity Relationships</strong>: The <code>cases</code> table represents registered disputes. Through the junction table <code>case_sections</code>, cases are linked to multiple records in the <code>legal_sections</code> catalog, which holds predefined details (<code>max_sentence_days</code>, <code>bailability</code>).
+              </li>
+              <li>
+                <strong>Custody Logic Integration</strong>: The maximum statutory sentence determines the <code>expected_sentence_days</code> inside the <code>detention_details</code> registry.
+              </li>
+              <li>
+                <strong>Overstay Flags</strong>: By comparing the accused's actual time in custody (<code>detention_days</code>) to this maximum, the system calculates the <code>detention_ratio</code>. When this ratio is \(\ge 0.5\) (under Section 436A), the <code>overstay_flag</code> triggers, bumping the case to <strong>CRITICAL</strong> status.
+              </li>
+            </ul>
+          </Card>
+        </div>
+
+        {/* System Roadmap and Future Scale */}
+        <div className="col-12 md:col-6 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="Future Scale & System Integrations" style={{ height: "100%", borderLeft: "4px solid #138808", padding: "1.5rem" }}>
+            <p style={{ lineHeight: "1.5", fontSize: "0.9rem", margin: "0 0 0.8rem 0" }}>
+              To transition Legira from a single-court deployment to a nationally distributed judicial framework, the roadmap defines several key integrations:
+            </p>
+            <ul style={{ paddingLeft: "1.1rem", lineHeight: "1.5", fontSize: "0.88rem", margin: 0 }}>
+              <li>
+                <strong>Police Database Linkages (CCTNS)</strong>: Direct API mapping to the Crime and Criminal Tracking Network & Systems to ingest FIRs and charge sheets automatically upon filing.
+              </li>
+              <li>
+                <strong>e-Prisons Integration</strong>: Real-time sync of undertrial entry dates and custody tracking logs directly from correctional facilities to keep detention data perfectly synchronized.
+              </li>
+              <li>
+                <strong>Speech-to-Text Transcription</strong>: Local, offline Whisper-based transcription clusters deployed inside courtrooms to compile immediate, accurate hearing logs.
+              </li>
+              <li>
+                <strong>Distributed Blockchain Ledger</strong>: Migrating the cryptographic auditing engine to a consortium-based network (Hyperledger Fabric) shared between high courts, prison facilities, and the Ministry of Law & Justice.
+              </li>
+            </ul>
           </Card>
         </div>
 
