@@ -264,6 +264,15 @@ export default function Login() {
             />
           </form>
 
+          <Button
+            type="button"
+            label="Learn About the Project"
+            icon="pi pi-info-circle"
+            onClick={() => navigate("/about")}
+            className="w-full p-button-outlined p-button-warning"
+            style={{ marginTop: "12px", borderColor: "#FF9933", color: "#FF9933", fontWeight: "bold" }}
+          />
+
           {/* Divider */}
           <div className="lp-divider">
             <span>Quick access — demo accounts</span>

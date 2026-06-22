@@ -68,6 +68,7 @@ export default function App() {
           <Routes>
             {/* Public */}
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
 
             {/* Protected — shared layout */}
             <Route
@@ -190,16 +191,6 @@ export default function App() {
                 element={
                   <PrivateRoute>
                     <BlockchainLedger />
-                  </PrivateRoute>
-                }
-              />
-
-              {/* About page — visible to all roles */}
-              <Route
-                path="about"
-                element={
-                  <PrivateRoute>
-                    <About />
                   </PrivateRoute>
                 }
               />

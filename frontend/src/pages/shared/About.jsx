@@ -2,10 +2,15 @@ import React, { useEffect, useRef } from "react";
 import { Card } from "primereact/card";
 import { Tag } from "primereact/tag";
 import { Timeline } from "primereact/timeline";
+import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import gsap from "gsap";
 
 export default function About() {
   const pageRef = useRef(null);
+  const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -19,13 +24,21 @@ export default function About() {
         y: 30,
         opacity: 0,
         duration: 0.5,
-        stagger: 0.1,
-        delay: 0.15,
+        stagger: 0.08,
+        delay: 0.1,
         ease: "power2.out",
       });
     }, pageRef);
     return () => ctx.revert();
   }, []);
+
+  const handleBack = () => {
+    if (user) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  };
 
   const lifecycleEvents = [
     {
@@ -105,7 +118,7 @@ export default function About() {
 
   const customizedMarker = (item) => {
     return (
-      <span className="flex w-2rem h-2rem align-items-center justify-content-center border-circle z-1" style={{
+      <span className="flex align-items-center justify-content-center border-circle z-1" style={{
         backgroundColor: item.bg,
         width: "38px",
         height: "38px",
@@ -134,8 +147,15 @@ export default function About() {
   return (
     <div ref={pageRef} className="about-container" style={{ padding: "1.5rem", maxWidth: "1200px", margin: "0 auto" }}>
       {/* Header Banner */}
-      <div className="about-header banner-saffron" style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "2rem" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div className="about-header banner-saffron" style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "2rem", position: "relative" }}>
+        <Button 
+          icon="pi pi-arrow-left" 
+          label={user ? "Back to Dashboard" : "Back to Login"} 
+          onClick={handleBack} 
+          className="p-button-text p-button-plain" 
+          style={{ position: "absolute", top: "10px", right: "10px", color: "#fff", border: "1px solid rgba(255,255,255,0.4)", borderRadius: "4px", backgroundColor: "rgba(255,255,255,0.1)" }}
+        />
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
           <i className="pi pi-info-circle" style={{ fontSize: "1.8rem", color: "#fff" }} />
           <h1 style={{ color: "#fff", margin: 0, fontSize: "1.8rem", fontWeight: 700 }}>About Legira</h1>
         </div>
@@ -194,8 +214,77 @@ export default function About() {
           </Card>
         </div>
 
+        {/* Detailed Tech Specifications (AI & Blockchain) */}
+        <div className="col-12 md:col-6 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="AI Specifications & Prompt Engineering" style={{ height: "100%", borderLeft: "4px solid #138808" }}>
+            <p style={{ lineHeight: "1.5", fontSize: "0.95rem" }}>
+              Legira utilizes a hybrid AI layout orchestrating both local and cloud LLMs via a Python Flask framework:
+            </p>
+            <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.6", fontSize: "0.95rem" }}>
+              <li>
+                <strong>Cloud Engine (Default)</strong>: Google Gemini API (<code>gemini-2.5-flash</code>) handles high-concurrency requests, offering rapid reasoning and low-latency token generation.
+              </li>
+              <li>
+                <strong>Local Fallback</strong>: Ollama client integration running <code>qwen2.5:latest</code> allows secure offline hosting and air-gapped system runs.
+              </li>
+              <li>
+                <strong>Temperature Tuning</strong>: 
+                <ul>
+                  <li><em>Factual Summarization</em>: Configured at <code>temperature=0.2</code> to restrict hallucinations and maintain strictly factual legal wording.</li>
+                  <li><em>IPC Section Recommendation</em>: Configured at <code>temperature=0.1</code> to ensure absolute JSON output compliance.</li>
+                </ul>
+              </li>
+            </ul>
+          </Card>
+        </div>
+
+        <div className="col-12 md:col-6 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="Cryptographic Blockchain Audit Trail" style={{ height: "100%", borderLeft: "4px solid #000F89" }}>
+            <p style={{ lineHeight: "1.5", fontSize: "0.95rem" }}>
+              To ensure absolute transparency and prevent internal tampering of record updates, Legira writes critical case milestones to a custom blockchain ledger:
+            </p>
+            <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.6", fontSize: "0.95rem" }}>
+              <li>
+                <strong>Block Structure</strong>: Every block stores a Block Index, Timestamp, Transactions (details of case registration, judge assignments, hearing outcomes), Previous Block Hash, and Current Cryptographic Hash.
+              </li>
+              <li>
+                <strong>Security Hashing</strong>: Case data is transformed into a cryptographic hash (SHA-256), creating a tamper-evident seal.
+              </li>
+              <li>
+                <strong>Integrity Verification</strong>: A public verification engine iterates through the chain to recalculate hashes. If any block's database record changes, the link breaks and triggers a system alert.
+              </li>
+            </ul>
+          </Card>
+        </div>
+
+        {/* Database & Section Relations */}
+        <div className="col-12 about-section-card" style={{ marginBottom: "1.5rem" }}>
+          <Card title="Database Architecture & Overstay Alerts" style={{ borderLeft: "4px solid #FF9933" }}>
+            <p style={{ lineHeight: "1.6", fontSize: "0.98rem" }}>
+              Legira's core database relations map the case lifecycle directly to legal statutes to protect civil liberties:
+            </p>
+            <div className="grid" style={{ marginTop: "1rem" }}>
+              <div className="col-12 md:col-6">
+                <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Relation Schema Mapping</h5>
+                <p style={{ lineHeight: "1.5", fontSize: "0.92rem", color: "#475569" }}>
+                  The <code>cases</code> table represents registered disputes. Through the junction table <code>case_sections</code>, cases are linked to multiple records in the <code>legal_sections</code> catalog. 
+                  This catalog holds predefined details for each IPC/BNS section, including <code>max_sentence_years</code>, <code>max_sentence_days</code>, and <code>bailability</code>.
+                </p>
+              </div>
+              <div className="col-12 md:col-6">
+                <h5 style={{ margin: "0 0 0.5rem 0", color: "#1e293b", fontWeight: "bold" }}>Overstay & Section 436A CrPC/BNSS Logic</h5>
+                <p style={{ lineHeight: "1.5", fontSize: "0.92rem", color: "#475569" }}>
+                  The maximum statutory sentence of the associated sections determines the <code>expected_sentence_days</code> inside the <code>detention_details</code> registry. 
+                  By comparing the accused's actual time in custody (<code>detention_days</code>) to this maximum, the system calculates the <code>detention_ratio</code>. 
+                  When this ratio is <code>&gt;= 1.0</code> (or <code>&gt;= 0.5</code> under Section 436A), the <code>overstay_flag</code> triggers, highlighting an immediate human rights concern and bumping the case to <strong>CRITICAL</strong> status in the Priority Queue.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
         {/* End-to-End Court Case Lifecycle Timeline */}
-        <div className="col-12 about-section-card" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+        <div className="col-12 about-section-card" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <Card title="End-to-End Court Case Lifecycle" style={{ borderLeft: "4px solid #138808" }}>
             <p style={{ marginBottom: "2rem", color: "var(--text-secondary-color)", fontSize: "1rem" }}>
               Legira manages the entire lifecycle of a court case seamlessly. Below is the workflow from case filing to scheduling and stakeholder communication:
@@ -240,6 +329,17 @@ export default function About() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Marquee Portfolio Link */}
+      <div style={{ width: "100%", overflow: "hidden", marginTop: "3rem", borderTop: "1px solid #e2e8f0", paddingTop: "1rem" }}>
+        <marquee behavior="scroll" direction="left" style={{ color: "#FF9933", fontWeight: "bold", fontSize: "1.1rem" }}>
+          Developed by &nbsp;
+          <a href="https://github.com/AswinMVK" target="_blank" rel="noopener noreferrer" style={{ color: "#000F89", textDecoration: "underline", fontWeight: "800" }}>
+            Aswin MVK
+          </a> 
+          &nbsp; — Click to view my portfolio repository and digital showcases!
+        </marquee>
       </div>
     </div>
   );
