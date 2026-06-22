@@ -36,6 +36,7 @@ const CaseDetailShared = React.lazy(() => import("./pages/CaseDetailShared"));
 const BlockchainLedger = React.lazy(
   () => import("./pages/shared/BlockchainLedger"),
 );
+const About = React.lazy(() => import("./pages/shared/About"));
 
 // ── Private route guard ──────────────────────────────────────
 function PrivateRoute({ children, roles }) {
@@ -189,6 +190,16 @@ export default function App() {
                 element={
                   <PrivateRoute>
                     <BlockchainLedger />
+                  </PrivateRoute>
+                }
+              />
+
+              {/* About page — visible to all roles */}
+              <Route
+                path="about"
+                element={
+                  <PrivateRoute>
+                    <About />
                   </PrivateRoute>
                 }
               />

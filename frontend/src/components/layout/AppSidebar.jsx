@@ -11,6 +11,7 @@ const WRITER_LINKS = [
   },
   { to: "/writer/cases", icon: "pi pi-folder-open", label: "My Cases" },
   { to: "/blockchain", icon: "pi pi-link", label: "Blockchain" },
+  { to: "/about", icon: "pi pi-info-circle", label: "About" },
 ];
 
 const JUDGE_LINKS = [
@@ -18,6 +19,7 @@ const JUDGE_LINKS = [
   { to: "/judge/priority", icon: "pi pi-chart-line", label: "Priority Queue" },
   { to: "/judge/schedule", icon: "pi pi-calendar", label: "My Schedule" },
   { to: "/blockchain", icon: "pi pi-link", label: "Blockchain" },
+  { to: "/about", icon: "pi pi-info-circle", label: "About" },
 ];
 
 const ADMIN_LINKS = [
@@ -30,6 +32,7 @@ const ADMIN_LINKS = [
     label: "Register Case",
   },
   { to: "/blockchain", icon: "pi pi-link", label: "Blockchain" },
+  { to: "/about", icon: "pi pi-info-circle", label: "About" },
 ];
 
 const ADVOCATE_LINKS = [
@@ -37,6 +40,7 @@ const ADVOCATE_LINKS = [
   { to: "/advocate/cases", icon: "pi pi-briefcase", label: "My Cases" },
   { to: "/advocate/victims", icon: "pi pi-users", label: "Victim Management" },
   { to: "/blockchain", icon: "pi pi-link", label: "Blockchain" },
+  { to: "/about", icon: "pi pi-info-circle", label: "About" },
 ];
 
 export default function AppSidebar({ open, onClose }) {
