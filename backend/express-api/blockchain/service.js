@@ -42,6 +42,30 @@ class BlockchainService {
       )
     `);
 
+    // Automatically check and add missing columns to blockchain_logs table
+    try {
+      const [columns] = await db.query("SHOW COLUMNS FROM blockchain_logs");
+      const columnNames = columns.map(c => c.Field);
+      
+      const missingColumns = [
+        { name: 'block_index', def: 'INT NULL' },
+        { name: 'action_type', def: 'VARCHAR(50) NULL' },
+        { name: 'performed_by', def: 'VARCHAR(100) NULL' },
+        { name: 'role', def: 'VARCHAR(50) NULL' },
+        { name: 'description', def: 'TEXT NULL' },
+        { name: 'is_valid', def: 'TINYINT DEFAULT 1' }
+      ];
+
+      for (let col of missingColumns) {
+        if (!columnNames.includes(col.name)) {
+          await db.query(`ALTER TABLE blockchain_logs ADD COLUMN ${col.name} ${col.def}`);
+          console.log(`Added missing column ${col.name} to blockchain_logs`);
+        }
+      }
+    } catch (err) {
+      console.error("Error migrating blockchain_logs columns:", err);
+    }
+
     const [rows] = await db.query(
       "SELECT * FROM blockchain_blocks ORDER BY block_index ASC",
     );
