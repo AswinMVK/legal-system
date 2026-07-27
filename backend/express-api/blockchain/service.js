@@ -15,14 +15,33 @@ class BlockchainService {
   /* ── Singleton ── */
   static async getInstance() {
     if (!instance) {
-      instance = new BlockchainService();
-      await instance.init();
+      const tempInstance = new BlockchainService();
+      try {
+        await tempInstance.init();
+        instance = tempInstance;
+      } catch (err) {
+        console.error("Failed to initialize BlockchainService:", err);
+        throw err;
+      }
     }
     return instance;
   }
 
   /* ── Load chain from DB or create genesis ── */
   async init() {
+    // Automatically create blockchain_blocks table if it doesn't exist
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS blockchain_blocks (
+        block_index INT PRIMARY KEY,
+        timestamp   VARCHAR(50) NOT NULL,
+        last_hash   VARCHAR(64) NOT NULL,
+        hash        VARCHAR(64) NOT NULL,
+        nonce       INT NOT NULL,
+        difficulty  INT NOT NULL,
+        data        LONGTEXT NOT NULL
+      )
+    `);
+
     const [rows] = await db.query(
       "SELECT * FROM blockchain_blocks ORDER BY block_index ASC",
     );
